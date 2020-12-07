@@ -20,7 +20,7 @@
                 v-if="resolvePokemon.types"
                 width="35"
                 height="35"
-                :src="require(`@/static/icons/${resolvePokemon.types[0]}.png`)"
+                :src="loadImg(resolvePokemon.types[0])"
               />
             </v-card-title>
             <v-card-subtitle>{{ `${resolvePokemon.supertype} - ${resolvePokemon.subtype}`}}</v-card-subtitle>
@@ -28,7 +28,7 @@
             <v-container>
               <v-row v-for="(att, a) of resolvePokemon.attacks" :key="a">
                 <div v-for="(cost, c) of att.cost" :key="c">
-                  <img width="25" height="25" :src="require(`@/static/icons/${cost}.png`)" />
+                  <img width="25" height="25" :src="loadImg(cost)" />
                 </div>
                 {{`${att.name} | ${att.damage}`}}
                 <v-card-text>{{att.text}}</v-card-text>
@@ -37,11 +37,7 @@
                 <v-col>
                   <h3>WEAKNESS</h3>
                   <div v-if="resolvePokemon.weaknesses">
-                    <img
-                      width="25"
-                      height="25"
-                      :src="require(`@/static/icons/${resolvePokemon.weaknesses[0].type}.png`)"
-                    />
+                    <img width="25" height="25" :src="loadImg(resolvePokemon.weaknesses[0].type)" />
                     {{resolvePokemon.weaknesses[0].value}}
                   </div>
                   <div v-else>N/A</div>
@@ -49,11 +45,7 @@
                 <v-col>
                   <h3>RESISTANCES</h3>
                   <div v-if="resolvePokemon.resistances">
-                    <img
-                      width="25"
-                      height="25"
-                      :src="require(`@/static/icons/${resolvePokemon.resistances[0].type}.png`)"
-                    />
+                    <img width="25" height="25" :src="loadImg(resolvePokemon.resistances[0].type)" />
                     {{resolvePokemon.resistances[0].value}}
                   </div>
                   <div v-else>N/A</div>
@@ -61,11 +53,7 @@
                 <v-col>
                   <h3>RETREAT COST</h3>
                   <div v-if="resolvePokemon.retreatCost">
-                    <img
-                      width="25"
-                      height="25"
-                      :src="require(`@/static/icons/${resolvePokemon.retreatCost[0]}.png`)"
-                    />
+                    <img width="25" height="25" :src="loadImg(resolvePokemon.retreatCost[0])" />
                   </div>
                   <div v-else>N/A</div>
                 </v-col>
@@ -89,9 +77,12 @@ export default {
   methods: {
     goTo(path) {
       if (this.$i18n.locale === "pt") {
-        return this.$router.push(path)
+        return this.$router.push(path);
       }
       this.$router.push(`/en` + path);
+    },
+    loadImg(path) {
+      return require(`@/static/icons/${path}.png`);
     }
   }
 };

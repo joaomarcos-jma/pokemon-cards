@@ -58,6 +58,31 @@ div.container {
   width: calc(100% - 16px);
 }
 
+.layout.cards .v-card__title {
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.2em;
+  margin-top: 0;
+  padding-bottom: 5px;
+  padding-top: 20px;
+  text-transform: uppercase;
+  word-break: break-word;
+}
+.layout.cards .v-card__title a {
+  color: var(--v-secondary-base);
+  text-decoration: none;
+}
+.layout.cards .v-card__title a:hover {
+  text-decoration: underline;
+}
+
+.section.row {
+  margin-top: 48px;
+}
+.section.row > .col:first-child {
+  padding-right: 48px;
+}
+
 .loader {
   display: flex;
   align-items: center;

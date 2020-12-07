@@ -18,11 +18,24 @@
           <v-layout class="cards pokemon-cards flex-wrap justify-center">
             <v-row>
               <v-col cols="4" v-for="(pokemon, i) of pokemonData.cards" :key="i">
-                <v-card class="d-flex">
-                  <div class="animate__animated animate__fadeInRight">
-                    <v-img :src="pokemon.imageUrl"></v-img>
-                  </div>
-                </v-card>
+                <v-hover v-slot:default="{ hover }">
+                  <v-card class="d-flex">
+                    <div class="animate__animated animate__fadeInRight">
+                      <v-img
+                        @click="$router.push(`/pokemon/${pokemon.id}`)"
+                        :src="pokemon.imageUrl"
+                      >
+                        <v-expand-transition>
+                          <v-fade-transition>
+                            <v-overlay v-if="hover" absolute color="#036358">
+                              <span class="white--text headline pt-10">{{pokemon.name}}</span>
+                            </v-overlay>
+                          </v-fade-transition>
+                        </v-expand-transition>
+                      </v-img>
+                    </div>
+                  </v-card>
+                </v-hover>
               </v-col>
             </v-row>
           </v-layout>
@@ -45,7 +58,7 @@ export default {
     comics: []
   }),
   computed: {
-    ...mapState(["pokemonData"])
+    ...mapState(["pokemonData", "isLoading"])
   },
   watch: {
     search(val) {

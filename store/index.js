@@ -36,10 +36,10 @@ export const actions = {
     commit
   }, payload) {
     commit("SET_LOADING", true)
-    let response = await api.request('get', `/cards/${payload.id}`)
+    let response = await api.request('get', `/cards/${payload}`)
     commit("SET_LOADING", false)
     if (response) {
-      commit('RESOLVE_POKEMON', response.data)
+      commit('RESOLVE_POKEMON', response.data.card)
     }
   }
 

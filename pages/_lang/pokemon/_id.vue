@@ -2,7 +2,7 @@
   <v-layout wrap>
     <v-container>
       <div style="text-align: right">
-        <v-btn to="/" text style="margin-right: 30px">
+        <v-btn @click="goTo('/')" text style="margin-right: 30px">
           <v-icon size="35">mdi-arrow-left</v-icon>
         </v-btn>
       </div>
@@ -20,7 +20,7 @@
                 v-if="resolvePokemon.types"
                 width="35"
                 height="35"
-                :src="require(`../../static/icons/${resolvePokemon.types[0]}.png`)"
+                :src="require(`@/static/icons/${resolvePokemon.types[0]}.png`)"
               />
             </v-card-title>
             <v-card-subtitle>{{ `${resolvePokemon.supertype} - ${resolvePokemon.subtype}`}}</v-card-subtitle>
@@ -28,7 +28,7 @@
             <v-container>
               <v-row v-for="(att, a) of resolvePokemon.attacks" :key="a">
                 <div v-for="(cost, c) of att.cost" :key="c">
-                  <img width="25" height="25" :src="require(`../../static/icons/${cost}.png`)" />
+                  <img width="25" height="25" :src="require(`@/static/icons/${cost}.png`)" />
                 </div>
                 {{`${att.name} | ${att.damage}`}}
                 <v-card-text>{{att.text}}</v-card-text>
@@ -40,7 +40,7 @@
                     <img
                       width="25"
                       height="25"
-                      :src="require(`../../static/icons/${resolvePokemon.weaknesses[0].type}.png`)"
+                      :src="require(`@/static/icons/${resolvePokemon.weaknesses[0].type}.png`)"
                     />
                     {{resolvePokemon.weaknesses[0].value}}
                   </div>
@@ -52,7 +52,7 @@
                     <img
                       width="25"
                       height="25"
-                      :src="require(`../../static/icons/${resolvePokemon.resistances[0].type}.png`)"
+                      :src="require(`@/static/icons/${resolvePokemon.resistances[0].type}.png`)"
                     />
                     {{resolvePokemon.resistances[0].value}}
                   </div>
@@ -64,7 +64,7 @@
                     <img
                       width="25"
                       height="25"
-                      :src="require(`../../static/icons/${resolvePokemon.retreatCost[0]}.png`)"
+                      :src="require(`@/static/icons/${resolvePokemon.retreatCost[0]}.png`)"
                     />
                   </div>
                   <div v-else>N/A</div>
@@ -85,6 +85,14 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getPokemonById", this.$route.params.id);
+  },
+  methods: {
+    goTo(path) {
+      if (this.$i18n.locale === "pt") {
+        return this.$router.push(path)
+      }
+      this.$router.push(`/en` + path);
+    }
   }
 };
 </script>

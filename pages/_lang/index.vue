@@ -21,10 +21,7 @@
                 <v-hover v-slot:default="{ hover }">
                   <v-card class="d-flex">
                     <div class="animate__animated animate__fadeInRight">
-                      <v-img
-                        @click="$router.push(`/pokemon/${pokemon.id}`)"
-                        :src="pokemon.imageUrl"
-                      >
+                      <v-img @click="goTo(pokemon.id)" :src="pokemon.imageUrl">
                         <v-expand-transition>
                           <v-fade-transition>
                             <v-overlay v-if="hover" absolute color="#036358">
@@ -86,6 +83,12 @@ export default {
         });
         this.loading = false;
       }, 100);
+    },
+    goTo(path) {
+      if (this.$i18n.locale === "pt") {
+        return this.$router.push(`/pokemon/${path}`);
+      }
+      this.$router.push(`/en/pokemon/` + path);
     }
   }
 };

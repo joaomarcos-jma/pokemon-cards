@@ -1,0 +1,10 @@
+{
+    "links": {
+        "brazilian": "Versão em Português",
+        "english": "Versão em Inglês"
+    },
+    "home": {
+        "title": "Pokemon Cards",
+        "search": "Qual carta gostaria de buscar?"
+    }
+}

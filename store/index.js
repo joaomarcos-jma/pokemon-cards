@@ -3,7 +3,9 @@ const api = new ApiService()
 export const state = () => ({
   isLoading: false,
   pokemonData: {},
-  resolvePokemon: {}
+  resolvePokemon: {},
+  locales: ['pt', 'en'],
+  locale: 'pt'
 })
 
 export const mutations = {
@@ -15,6 +17,11 @@ export const mutations = {
   },
   RESOLVE_POKEMON(state, value) {
     state.resolvePokemon = value
+  },
+  SET_LANG(state, locale) {
+    if (state.locales.includes(locale)) {
+      state.locale = locale
+    }
   }
 }
 export const actions = {

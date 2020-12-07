@@ -31,18 +31,22 @@ export default {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000'
   },
 
+  router: {
+    middleware: 'i18n'
+  },
+
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
     '~/css/style.css',
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [
-    {
+  plugins: [{
       src: '~/plugins/localStorage.js',
       ssr: false
     },
     '@/plugins/animate.js',
+    '~/plugins/i18n.js'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

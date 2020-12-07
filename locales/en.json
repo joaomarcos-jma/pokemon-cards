@@ -1,0 +1,10 @@
+{
+    "links": {
+        "brazilian": "Brazilian version",
+        "english": "English version"
+    },
+    "home": {
+        "title": "Pokemon Cards",
+        "search": "Which card would you like to search?"
+    }
+}

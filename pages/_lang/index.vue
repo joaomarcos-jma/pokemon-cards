@@ -6,7 +6,7 @@
           v-model="search"
           :loading="loading"
           :items="items"
-          class="mx-4"
+          class="mx-4 search"
           flat
           :label="$t('home.search')"
           solo-inverted
@@ -21,7 +21,11 @@
                 <v-hover v-slot:default="{ hover }">
                   <v-card class="d-flex">
                     <div class="animate__animated animate__fadeInRight">
-                      <v-img @click="goTo(`/pokemon/${pokemon.id}`)" :src="pokemon.imageUrl">
+                      <v-img
+                        @click="goTo(`/pokemon/${pokemon.id}`)"
+                        id="getById"
+                        :src="pokemon.imageUrl"
+                      >
                         <v-expand-transition>
                           <v-fade-transition>
                             <v-overlay v-if="hover" absolute color="#036358">
@@ -50,8 +54,7 @@ export default {
     viewPokemon: "",
     loading: false,
     items: [],
-    search: null,
-    select: null,
+    search: "",
     comics: []
   }),
   computed: {
@@ -62,7 +65,7 @@ export default {
       if (!val) {
         return this.getPokemons();
       }
-      val && this.querySelections(val);
+      val.length > 1 && this.querySelections(val);
     }
   },
   created() {
@@ -75,14 +78,12 @@ export default {
     querySelections(v) {
       this.loading = true;
       this.getPokemons();
-      setTimeout(() => {
-        this.items = this.pokemonData.cards.filter(e => {
-          return (
-            (e.name || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1
-          );
-        });
-        this.loading = false;
-      }, 100);
+      this.items = this.pokemonData.cards.filter(e => {
+        return (
+          (e.name || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1
+        );
+      });
+      this.loading = false;
     },
     goTo(path) {
       if (this.$i18n.locale === "pt") {

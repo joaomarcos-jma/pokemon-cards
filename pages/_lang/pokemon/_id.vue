@@ -2,7 +2,7 @@
   <v-layout wrap>
     <v-container>
       <div style="text-align: right">
-        <v-btn @click="goTo('/')" text style="margin-right: 30px">
+        <v-btn @click="goTo('/')" id="goBack" text style="margin-right: 30px">
           <v-icon size="35">mdi-arrow-left</v-icon>
         </v-btn>
       </div>
@@ -72,9 +72,12 @@ export default {
     ...mapState(["resolvePokemon"])
   },
   mounted() {
-    this.$store.dispatch("getPokemonById", this.$route.params.id);
+    this.getPokemonById();
   },
   methods: {
+    async getPokemonById() {
+      await this.$store.dispatch("getPokemonById", this.$route.params.id);
+    },
     goTo(path) {
       if (this.$i18n.locale === "pt") {
         return this.$router.push(path);

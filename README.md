@@ -12,8 +12,11 @@ $ yarn dev
 # build for production and launch server
 $ yarn prod
 
-# to test
-$ yarn test
+# unit testing
+$ yarn test:unit
+
+# e2e testing
+$ yarn test:e2e
 
 # generate static project
 $ yarn generate

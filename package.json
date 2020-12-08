@@ -7,8 +7,10 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "test": "jest",
-    "prod": "yarn build && yarn start"
+    "prod": "yarn build && yarn start",
+    "e2e:silent": "cypress run",
+    "test:e2e": "cypress open --browser chrome",
+    "test:unit": "jest"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
@@ -26,6 +28,7 @@
     "@vue/test-utils": "^1.1.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^26.5.0",
+    "cypress": "^6.1.0",
     "jest": "^26.5.0",
     "vue-jest": "^3.0.4"
   }

@@ -8,7 +8,11 @@
           class="Header__Link"
           active-class="none"
           exact
-        >{{ $t('links.english') }}<v-icon>mdi-language</v-icon></v-btn>
+          id="language"
+        >
+          {{ $t('links.english') }}
+          <v-icon>mdi-language</v-icon>
+        </v-btn>
         <v-btn
           v-else
           :to="$route.fullPath.replace(/^\/[^\/]+/, '')"
